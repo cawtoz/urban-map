@@ -1,0 +1,34 @@
+[
+    {
+        "id": 1,
+        "title": "Parque Veracruz",
+        "lat": 4.5995,
+        "lng": -74.0695,
+        "type": "audio",
+        "file": "media/audio1.mp3"
+    },
+    {
+        "id": 2,
+        "title": "Centro Comercial Veracruz",
+        "lat": 4.6015,
+        "lng": -74.0710,
+        "type": "video",
+        "file": "media/video1.mp4"
+    },
+    {
+        "id": 3,
+        "title": "Calle 134",
+        "lat": 4.5960,
+        "lng": -74.0750,
+        "type": "audio",
+        "file": "media/audio2.mp3"
+    },
+    {
+        "id": 4,
+        "title": "Plaza Central",
+        "lat": 4.5940,
+        "lng": -74.0720,
+        "type": "video",
+        "file": "media/video2.mp4"
+    }
+]
