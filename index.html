@@ -1480,7 +1480,7 @@ out body geom;
                         });
 
                         // Reducir el radio: padding del 3% (más chico)
-                        const radius = Math.ceil(maxDist * 1.5);
+                        const radius = Math.ceil(maxDist * 1.25);
                         console.log('Radio calculado:', radius, 'metros (', Math.round(radius), 'm )');
 
                         // PRIMERO: Dibujar el círculo visible (contorno blanco)
@@ -1544,6 +1544,27 @@ out body geom;
                         }, 100);
 
                         console.log('✓ Máscara circular completada');
+
+                        // CARGAR ZONAS VERDES dentro del círculo
+                        // Calcular bbox desde el centro y radio del círculo
+                        const earthRadius = 6371000; // metros
+                        const dLat = (radius / earthRadius) * (180 / Math.PI);
+                        const dLng = (radius / (earthRadius * Math.cos(center.lat * Math.PI / 180))) * (180 / Math.PI);
+                        
+                        const circleBbox = {
+                            south: center.lat - dLat,
+                            north: center.lat + dLat,
+                            west: center.lng - dLng,
+                            east: center.lng + dLng
+                        };
+
+                        console.log('Cargando zonas verdes dentro del círculo, bbox:', circleBbox);
+                        
+                        // Guardar coordenadas del círculo para filtrado (en formato [lng, lat])
+                        const circlePolygonCoords = circlePoints.map(p => [p[1], p[0]]); // swap to [lng, lat]
+                        delimPolygonsCoordsLonLat = [circlePolygonCoords];
+                        
+                        loadGreenAreas(circleBbox);
                     } else {
                         console.warn('No hay ubicaciones con coordenadas válidas');
                     }
