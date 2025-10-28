@@ -1,34 +1,226 @@
 [
     {
         "id": 1,
-        "title": "Parque Veracruz",
-        "lat": 4.5995,
-        "lng": -74.0695,
+        "title": "Campanas Iglesia Veracruz",
+        "category": "Sonidos objetos",
+        "address": "Iglesia Veracruz",
+        "lat": 4.602569123208184,
+        "lng": -74.07296102787862,
         "type": "audio",
         "file": "media/audio1.mp3"
     },
     {
         "id": 2,
-        "title": "Centro Comercial Veracruz",
-        "lat": 4.6015,
-        "lng": -74.0710,
+        "title": "Campanas Iglesia Capuchina",
+        "category": "Sonidos objetos",
+        "address": "Iglesia Capuchina",
+        "lat": 4.604169891807999,
+        "lng": -74.07835381204059,
+        "type": "audio",
+        "file": "media/audio1.mp3"
+    },
+    {
+        "id": 3,
+        "title": "Skaters Parque Santander",
+        "category": "Sonidos objetos",
+        "address": "Parque Santander",
+        "lat": 4.602088371552142,
+        "lng": -74.07256650379416,
+        "type": "audio",
+        "file": "media/audio1.mp3"
+    },
+
+    {
+        "id": 4,
+        "title": "Cositas Malas de Mi",
+        "category": "Cantantes o instrumentos",
+        "address": "Calle 19 con Cra. 7ma",
+        "lat": 4.605333112624464,
+        "lng": -74.07162578973018,
         "type": "video",
         "file": "media/video1.mp4"
     },
     {
-        "id": 3,
-        "title": "Calle 134",
-        "lat": 4.5960,
-        "lng": -74.0750,
-        "type": "audio",
-        "file": "media/audio2.mp3"
+        "id": 5,
+        "title": "Pero lo Dudo",
+        "category": "Cantantes o instrumentos",
+        "address": "Plazoleta del Rosario, esquina oriental",
+        "lat": 4.600702083753035,
+        "lng": -74.07300234707759,
+        "type": "video",
+        "file": "media/video1.mp4"
     },
     {
-        "id": 4,
-        "title": "Plaza Central",
-        "lat": 4.5940,
-        "lng": -74.0720,
+        "id": 6,
+        "title": "Estoy pensando",
+        "category": "Cantantes o instrumentos",
+        "address": "Cra. 7ma con calle 14",
+        "lat": 4.5700996615057505,
+        "lng": -74.07831011151744,
         "type": "video",
-        "file": "media/video2.mp4"
+        "file": "media/video1.mp4"
+    },
+    {
+        "id": 7,
+        "title": "Gaitero Místico",
+        "category": "Cantantes o instrumentos",
+        "address": "Plazoleta del Rosario, frente a Claustro",
+        "lat": 4.600976957759329,
+        "lng": -74.07303001449466,
+        "type": "video",
+        "file": "media/video1.mp4"
+    },
+    {
+        "id": 8,
+        "title": "Baterista Matador",
+        "category": "Cantantes o instrumentos",
+        "address": "Cra. 7ma con Avenida Jiménez",
+        "lat": 4.601478221303708,
+        "lng": -74.073412456351,
+        "type": "video",
+        "file": "media/video1.mp4"
+    },
+    {
+        "id": 9,
+        "title": "Baterista Plástico",
+        "category": "Cantantes o instrumentos",
+        "address": "Eje Ambiental frente a C & P",
+        "lat": 4.600579582097168,
+        "lng": -74.07111425782121,
+        "type": "video",
+        "file": "media/video1.mp4"
+    },
+
+    {
+        "id": 10,
+        "title": "Comparsa Cumple Bogotá",
+        "category": "Eventos",
+        "address": "Cra. 7ma con Calle 17",
+        "lat": 4.603530532730275,
+        "lng": -74.0722757573915,
+        "type": "video",
+        "file": "media/video1.mp4"
+    },
+    {
+        "id": 11,
+        "title": "Concierto 35 años - Cielito Lindo",
+        "category": "Eventos",
+        "address": "Callejón de los libros (Cra 8a con Calle 15)",
+        "lat": 4.602842249353074,
+        "lng": -74.0743134805837,
+        "type": "video",
+        "file": "media/video1.mp4"
+    },
+    {
+        "id": 12,
+        "title": "Hombres de Aluminio - Bienal",
+        "category": "Eventos",
+        "address": "Frente a Iglesia San Francisco",
+        "lat": 4.601951621505435,
+        "lng": -74.07300733515225,
+        "type": "video",
+        "file": "media/video1.mp4"
+    },
+
+    {
+        "id": 13,
+        "title": "Bailadores de Carranga",
+        "category": "Bailadores",
+        "address": "Cra. 7ma frente a Iglesia Veracruz",
+        "lat": 4.602652098270596,
+        "lng": -74.07288224160884,
+        "type": "video",
+        "file": "media/video1.mp4"
+    },
+    {
+        "id": 14,
+        "title": "Bailadores de Ranchera",
+        "category": "Bailadores",
+        "address": "Callejón de los libros",
+        "lat": 4.603056392344371,
+        "lng": -74.0741797612364,
+        "type": "video",
+        "file": "media/video1.mp4"
+    },
+
+    {
+        "id": 15,
+        "title": "Doña Rosa Lotera",
+        "category": "Vendedores",
+        "address": "Callejón de los libros",
+        "lat": 4.603241723445095,
+        "lng": -74.07409009697434,
+        "type": "video",
+        "file": "media/video1.mp4"
+    },
+    {
+        "id": 16,
+        "title": "Chicha Venezolana",
+        "category": "Vendedores",
+        "address": "Plaza San Victorino (mitad)",
+        "lat": 4.602623990971267,
+        "lng": -74.07947590653298,
+        "type": "video",
+        "file": "media/video1.mp4"
+    },
+    {
+        "id": 17,
+        "title": "Helados La Campiña",
+        "category": "Vendedores",
+        "address": "Plaza San Victorino (borde oriental)",
+        "lat": 4.60270447276406,
+        "lng": -74.07909984194906,
+        "type": "video",
+        "file": "media/video1.mp4"
+    },
+    {
+        "id": 18,
+        "title": "Michelada de Mango",
+        "category": "Vendedores",
+        "address": "Plaza San Victorino (borde occidental)",
+        "lat": 4.602580092314085,
+        "lng": -74.07999533403584,
+        "type": "video",
+        "file": "media/video1.mp4"
+    },
+    {
+        "id": 19,
+        "title": "Pájaros Parque Periodistas",
+        "category": "Sonidos Naturales",
+        "address": "Parque Periodistas (árboles)",
+        "lat": 4.601292697692628,
+        "lng": -74.06952397774778,
+        "type": "audio",
+        "file": "media/audio1.mp3"
+    },
+    {
+        "id": 20,
+        "title": "Agua - Río Vicacha",
+        "category": "Sonidos Naturales",
+        "address": "Eje Ambiental (mitad)",
+        "lat": 4.601530230264913,
+        "lng": -74.06816172919643,
+        "type": "audio",
+        "file": "media/audio1.mp3"
+    },
+    {
+        "id": 21,
+        "title": "Árboles - Parque Santander",
+        "category": "Sonidos Naturales",
+        "address": "Parque Santander (árboles)",
+        "lat": 4.602133048905742,
+        "lng": -74.07241885271836,
+        "type": "audio",
+        "file": "media/audio1.mp3"
+    },
+    {
+        "id": 22,
+        "title": "Agua - Fuente Parque Santander",
+        "category": "Sonidos Naturales",
+        "address": "Fuente Parque Santander",
+        "lat": 4.601886298407109,
+        "lng": -74.07238809275547,
+        "type": "audio",
+        "file": "media/audio1.mp3"
     }
 ]

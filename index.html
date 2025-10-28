@@ -84,90 +84,72 @@
             background: #000;
         }
         
-        /* Contenedor del mezclador de audio */
+        /* Contenedor del mezclador de audio (minimal) */
         #audio-container {
             position: fixed;
-            bottom: 20px;
-            left: 20px;
+            bottom: 18px;
+            left: 18px;
             z-index: 1000;
-            width: 320px;
-            max-height: calc(100vh - 40px);
+            width: 300px;
+            max-height: calc(100vh - 36px);
             display: none;
-            background: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            border: 1px solid #e0e0e0;
+            background: rgba(255,255,255,0.95);
+            border-radius: 6px;
+            box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+            border: 1px solid rgba(0,0,0,0.06);
             overflow: hidden;
+            font-size: 13px;
         }
-        
+
         #audio-container.active {
             display: flex;
             flex-direction: column;
-            animation: slideIn 0.3s ease-out;
-        }
-        
-        @keyframes slideIn {
-            from {
-                transform: translateY(20px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
         }
         
         /* Header del mezclador */
         .mixer-header {
-            background: #1a1a1a;
-            padding: 12px 16px;
+            padding: 10px 12px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            border-bottom: 1px solid #e0e0e0;
+            border-bottom: 1px solid rgba(0,0,0,0.04);
+            background: transparent;
         }
-        
+
         .mixer-title {
             display: flex;
             align-items: center;
             gap: 8px;
-            color: #ffffff;
+            color: #111827;
             font-size: 13px;
-            font-weight: 500;
+            font-weight: 600;
             margin: 0;
-            letter-spacing: 0.5px;
         }
-        
-        .mixer-title i {
-            font-size: 14px;
-        }
-        
+
+        .mixer-title i { font-size: 14px; color: #6b7280; }
+
         .mixer-close {
             background: transparent;
             border: none;
-            width: 26px;
-            height: 26px;
-            border-radius: 6px;
+            width: 28px;
+            height: 28px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 16px;
-            color: #ffffff;
-            transition: all 0.2s ease;
+            font-size: 14px;
+            color: #6b7280;
         }
-        
-        .mixer-close:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
+
+        .mixer-close:hover { color: #111827; }
         
         /* Lista de pistas de audio */
         .mixer-tracks {
             flex: 1;
             overflow-y: auto;
-            padding: 12px;
-            max-height: 500px;
-            background: #fafafa;
+            padding: 10px;
+            max-height: 460px;
+            background: transparent;
         }
         
         .mixer-tracks:empty::after {
@@ -181,24 +163,14 @@
         
         /* Cada pista individual */
         .audio-track {
-            background: #ffffff;
-            border: 1px solid #e0e0e0;
+            background: rgba(255,255,255,0.98);
+            border: 1px solid rgba(0,0,0,0.04);
             border-radius: 6px;
-            padding: 10px;
+            padding: 8px;
             margin-bottom: 8px;
-            animation: trackIn 0.2s ease-out;
         }
         
-        @keyframes trackIn {
-            from {
-                transform: translateX(-10px);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
+        /* removed track animation for a cleaner feel */
         
         .track-header {
             display: flex;
@@ -208,40 +180,32 @@
         }
         
         .track-name {
-            color: #1a1a1a;
-            font-size: 12px;
+            color: #111827;
+            font-size: 13px;
             font-weight: 500;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
             flex: 1;
         }
-        
-        .track-name i {
-            font-size: 12px;
-            color: #666;
-        }
+
+        .track-name i { font-size: 13px; color: #6b7280; }
         
         .track-remove {
             background: transparent;
-            border: 1px solid #e0e0e0;
-            width: 22px;
-            height: 22px;
-            border-radius: 4px;
+            border: 1px solid rgba(0,0,0,0.04);
+            width: 26px;
+            height: 26px;
+            border-radius: 6px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 11px;
-            color: #666;
-            transition: all 0.2s ease;
+            font-size: 12px;
+            color: #6b7280;
         }
-        
-        .track-remove:hover {
-            background: #f5f5f5;
-            border-color: #d0d0d0;
-            color: #1a1a1a;
-        }
+
+        .track-remove:hover { color: #111827; background: rgba(0,0,0,0.02); }
         
         .track-controls {
             display: flex;
@@ -251,27 +215,20 @@
         
         /* Controles de reproducción */
         .play-pause-btn {
-            background: #1a1a1a;
-            border: none;
-            width: 30px;
-            height: 30px;
-            border-radius: 5px;
+            background: transparent;
+            border: 1px solid rgba(0,0,0,0.06);
+            width: 34px;
+            height: 34px;
+            border-radius: 6px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 11px;
-            color: white;
-            transition: all 0.2s ease;
+            font-size: 13px;
+            color: #111827;
         }
-        
-        .play-pause-btn:hover {
-            background: #333;
-        }
-        
-        .play-pause-btn:active {
-            transform: scale(0.96);
-        }
+
+        .play-pause-btn:hover { background: rgba(0,0,0,0.02); }
         
         /* Control de volumen */
         .volume-control {
@@ -283,7 +240,7 @@
         
         .volume-icon {
             font-size: 14px;
-            color: #666;
+            color: #6b7280;
             width: 16px;
         }
         
@@ -292,31 +249,26 @@
             height: 4px;
             -webkit-appearance: none;
             appearance: none;
-            background: #e0e0e0;
-            border-radius: 2px;
+            background: #f1f5f9;
+            border-radius: 999px;
             outline: none;
             cursor: pointer;
         }
-        
+
         .volume-slider::-webkit-slider-thumb {
             -webkit-appearance: none;
             appearance: none;
             width: 12px;
             height: 12px;
-            background: #1a1a1a;
+            background: #111827;
             border-radius: 50%;
             cursor: pointer;
-            transition: all 0.2s ease;
         }
-        
-        .volume-slider::-webkit-slider-thumb:hover {
-            transform: scale(1.15);
-        }
-        
+
         .volume-slider::-moz-range-thumb {
             width: 12px;
             height: 12px;
-            background: #1a1a1a;
+            background: #111827;
             border-radius: 50%;
             cursor: pointer;
             border: none;
@@ -332,19 +284,19 @@
         /* Barra de progreso */
         .progress-bar {
             width: 100%;
-            height: 3px;
-            background: #f0f0f0;
-            border-radius: 2px;
+            height: 4px;
+            background: #f1f5f9;
+            border-radius: 999px;
             margin-top: 8px;
             overflow: hidden;
             cursor: pointer;
         }
-        
+
         .progress-fill {
             height: 100%;
-            background: #1a1a1a;
+            background: #111827;
             width: 0%;
-            transition: width 0.1s linear;
+            transition: width 0.08s linear;
         }
         
         /* Scrollbar personalizado */
@@ -364,6 +316,256 @@
         .mixer-tracks::-webkit-scrollbar-thumb:hover {
             background: #b0b0b0;
         }
+
+        /* Botón de ayuda (incógnito) */
+        .help-btn {
+            position: fixed;
+            top: 16px;
+            right: 16px;
+            z-index: 1100;
+            width: 44px;
+            height: 44px;
+            border-radius: 4px;
+            /* style similar to Leaflet control button: slightly translucent, subtle border */
+            background: rgba(255,255,255,0.95);
+            color: #111111;
+            border: 1px solid rgba(0,0,0,0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            cursor: pointer;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.12);
+        }
+
+        .help-btn:hover { background: rgba(255,255,255,1); }
+
+        /* Panel de leyenda */
+        /* Legend styled like a Leaflet control and placed in the top-right (near help button)
+           Increased width so the menu doesn't wrap or drop below */
+        .map-legend {
+            position: fixed;
+            /* default position; will be moved dynamically when opened */
+            top: 16px;
+            left: 16px;
+            z-index: 1150;
+            width: 320px;
+            max-width: 90vw;
+            max-height: 60vh;
+            /* translucent background and subtle border like layer control */
+            background: rgba(255,255,255,0.95);
+            border-radius: 4px;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.12);
+            border: 1px solid rgba(0,0,0,0.06);
+            overflow: visible; /* permitir que el header/footer queden fijos y sólo el área de íconos haga scroll */
+            padding: 8px;
+            transform: none;
+            opacity: 0;
+            pointer-events: none;
+            transition: none; /* sin animación */
+            font-size: 13px;
+        }
+
+        .map-legend.active {
+            transform: none;
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .map-legend .legend-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 14px;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 14px;
+        }
+
+        .map-legend .legend-body { padding: 10px 14px; }
+
+        /* Área que contiene las filas de la leyenda: sólo esto tiene scroll */
+        .legend-items {
+            max-height: calc(60vh - 140px); /* deja espacio para header + footer; ajustar si es necesario */
+            overflow-y: auto;
+            padding-right: 4px; /* espacio para scrollbar */
+        }
+
+        .legend-items::-webkit-scrollbar { width: 8px; }
+        .legend-items::-webkit-scrollbar-track { background: transparent; }
+        .legend-items::-webkit-scrollbar-thumb { background: #d0d0d0; border-radius: 4px; }
+        .legend-items::-webkit-scrollbar-thumb:hover { background: #b0b0b0; }
+
+        .legend-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 0;
+            border-bottom: 1px dashed #f5f5f5;
+        }
+
+        .legend-row:last-child { border-bottom: none; }
+
+        .legend-icon {
+            width: 34px;
+            height: 34px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            color: #fff;
+        }
+
+        .legend-label { font-size: 13px; color: #222; }
+
+        .legend-footer { padding: 10px 14px; font-size: 12px; color: #666; border-top: 1px solid #f0f0f0; }
+
+        /* legend-close removed -- no close button needed per user request */
+
+        /* Marker core and media badge styles for waypoint markers */
+        .marker-core {
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+            background: white;
+            border: 2px solid #666;
+            color: #666;
+            font-size: 14px;
+            position: relative;
+        }
+
+        .media-badge {
+            position: absolute;
+            right: -6px;
+            bottom: -6px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+            border: 1px solid rgba(0,0,0,0.06);
+            font-size: 10px;
+            z-index: 10;
+        }
+
+        /* Video panel (non-blocking) */
+        #video-panel {
+            position: fixed;
+            right: 12px;
+            bottom: 12px;
+            /* responsive sizing so it never overflows the viewport */
+            width: min(360px, 92vw);
+            height: min(260px, 50vh);
+            background: rgba(255,255,255,0.97);
+            border-radius: 8px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+            border: 1px solid rgba(0,0,0,0.06);
+            z-index: 1200;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            max-width: 92vw;
+            max-height: 80vh;
+        }
+
+        #video-panel.minimized {
+            height: 40px;
+            width: 200px;
+            /* visually flatter when minimized */
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+
+        /* Hide the big video area when minimized and keep only the header */
+        #video-panel.minimized .video-body { display: none; }
+        #video-panel.minimized .video-header { height: 40px; padding: 6px 10px; }
+    #video-panel.minimized .video-title { font-size: 13px; }
+    /* When minimized, hide the title text to keep a compact icon-only look */
+    #video-panel.minimized .video-title .title-text { display: none; }
+        /* When minimized, show the mini icon and slightly darker header to look like a compact bar */
+        #video-panel.minimized .video-mini-icon { display: inline-flex; }
+        #video-panel.minimized .video-header { background: rgba(0,0,0,0.04); border-bottom: none; }
+        #video-panel.minimized { border-radius: 999px; overflow: visible; }
+    #video-panel.minimized .video-actions { background: transparent; }
+    /* hide the minimize/restore button when minimized to keep the pill very clean */
+    #video-panel.minimized #video-minimize { display: none; }
+
+
+        .video-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 6px 10px;
+            border-bottom: 1px solid rgba(0,0,0,0.04);
+            background: transparent;
+            height: 40px; /* explicit header height to aid vertical centering */
+        }
+
+        /* left icon shown only in minimized state for a compact affordance */
+        .video-mini-icon {
+            display: none;
+            width: 18px;
+            height: 18px;
+            flex: 0 0 18px;
+            margin-right: 8px;
+            color: #111827;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        .video-title { font-weight: 600; color: #111827; font-size: 13px; display:flex; align-items:center; gap:8px; }
+        .video-title .title-text { display: inline-block; max-width: 160px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+    .video-actions { display:flex; gap:6px; align-items:center; height:100%; }
+
+        .video-action {
+            background: transparent;
+            border: none;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: #6b7280;
+            font-size: 14px;
+            line-height: 1;
+            padding: 0;
+            margin: 0;
+        }
+
+        .video-action i { display:block; line-height:1; transform: translateY(-1px); }
+
+        /* Nudge the minimize button slightly up and to the right so it visually aligns with the close button */
+        #video-minimize {
+            position: relative;
+            top: -2px; /* move up a couple pixels */
+            margin-right: -4px; /* bring it closer to the X button */
+        }
+
+        .video-action:hover { color: #111827; }
+
+        .video-body { flex:1; display:flex; align-items:center; justify-content:center; padding:6px; overflow: hidden; }
+
+        /* make the video responsive and contained inside the panel */
+        #side-video {
+            width: 100%;
+            height: 100%;
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            background: #000;
+            border-radius: 6px;
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -378,24 +580,262 @@
         <div class="mixer-tracks" id="mixer-tracks"></div>
     </div>
     
+    <!-- Panel lateral para reproducir videos sin bloquear el mapa -->
+    <div id="video-panel" style="display:none;">
+        <div class="video-header">
+            <div class="video-title"><span class="video-mini-icon"><i class="fas fa-video"></i></span><span class="title-text">Video</span></div>
+            <div class="video-actions">
+                    <button id="video-minimize" class="video-action" title="Minimizar"><i class="fas fa-window-minimize"></i></button>
+                    <button id="video-close" class="video-action" title="Cerrar"><i class="fas fa-times"></i></button>
+                </div>
+        </div>
+        <div class="video-body">
+            <video id="side-video" controls preload="metadata" style="width:100%; height:100%; background:#000; display:block;"></video>
+        </div>
+    </div>
+
+    <!-- Botón de leyenda independiente (muestra la leyenda al hacer hover) -->
+    <button id="legend-btn" class="help-btn" title="Leyenda"><i class="fas fa-info-circle"></i></button>
+
+    <!-- Panel de leyenda (oculto por defecto) -->
+    <aside id="map-legend" class="map-legend" aria-hidden="true">
+        <div class="legend-header">
+            <strong>Leyenda</strong>
+        </div>
+        <div id="legend-body" class="legend-body">
+            <div id="legend-items" class="legend-items"></div>
+        </div>
+        <div class="legend-footer">Haz clic en un marcador para reproducir audio o ver video.</div>
+    </aside>
+
     <script>
-        // Inicializar el mapa (sin cerrar popup al hacer click)
-        const map = L.map('map', {
-            closePopupOnClick: false  // No cerrar popups al hacer click en el mapa
-        }).setView([4.5970, -74.0720], 15);  // Centro en la zona delimitada
-        
-        // Agregar capa de tiles de OpenStreetMap
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        // Capas base (usamos Positron como predeterminada porque es limpia y permite que los marcadores destaquen)
+        const osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
             maxZoom: 19
-        }).addTo(map);
+        });
+
+        const pos = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; <a href="https://carto.com/attributions">CartoDB</a>',
+            maxZoom: 19
+        });
+
+        const esriSat = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+            attribution: 'Tiles &copy; Esri',
+            maxZoom: 19
+        });
+
+        // Topo removed per user request
+
+        // Inicializar el mapa con Positron por defecto. No cerrar popup al hacer click.
+        const map = L.map('map', {
+            closePopupOnClick: false,
+            layers: [pos]
+        }).setView([4.5970, -74.0720], 15);
+
+        // Control para cambiar entre basemaps (guardamos referencia para añadir overlays dinámicos)
+        const baseLayers = {
+            'Callejero': osm,
+            'Claro': pos,
+            'Satélite': esriSat
+        };
+        const overlays = {}; // iremos añadiendo overlays como 'Zonas verdes'
+    // Place layer control at top-left but shift it right to avoid overlapping the Leaflet zoom buttons
+    const layerControl = L.control.layers(baseLayers, overlays, { position: 'topleft' }).addTo(map);
+    try {
+        const lcContainer = layerControl.getContainer();
+        if (lcContainer && lcContainer.style) {
+            // Move it slightly to the right so it doesn't cover the zoom control
+            lcContainer.style.left = '45px';
+            lcContainer.style.top = '-73px';
+        }
+    } catch (err) { console.warn('No se pudo reposicionar control de capas:', err); }
+        
+        // Capa vacía para las zonas verdes (será poblada desde Overpass)
+        const greenStyle = {
+            color: '#2f855a',
+            weight: 1,
+            fillColor: 'rgba(34,197,94,0.35)',
+            fillOpacity: 0.5
+        };
+
+        const greenLayer = L.geoJSON(null, {
+            style: greenStyle,
+            onEachFeature: function(feature, layer) {
+                // opcional: mostrar nombre si existe
+                if (feature.properties && (feature.properties.name || feature.properties['name:es'])) {
+                    const name = feature.properties.name || feature.properties['name:es'];
+                    layer.bindPopup(`<strong>${name}</strong>`);
+                }
+            }
+        });
+
+        let greenLayerLoaded = false;
+        // Coordenadas de la delimitación en formato [lng, lat] tal como vienen en delimitation.json
+        let delimPolygonCoordsLonLat = null;
+
+        // Controla visibilidad de greenLayer según basemap activo
+        function updateGreenLayerVisibility() {
+            // Sólo mostrar si ya cargamos los datos y el basemap actual es 'Claro' (pos)
+            try {
+                if (!greenLayerLoaded) return;
+                if (map.hasLayer(pos)) {
+                    if (!map.hasLayer(greenLayer)) map.addLayer(greenLayer);
+                } else {
+                    if (map.hasLayer(greenLayer)) map.removeLayer(greenLayer);
+                }
+            } catch (err) {
+                console.warn('Error actualizando visibilidad de greenLayer', err);
+            }
+        }
+
+        // Escuchar cambios de basemap para alternar la capa verde
+        map.on('baselayerchange', function(e) {
+            // e.name suele ser el nombre del layer registrado ('Claro' para pos)
+            updateGreenLayerVisibility();
+        });
+
+        // Punto en polígono - ray-casting (entrada: point [lon, lat], vs: array de [lon, lat])
+        function pointInPolygon(point, vs) {
+            const x = point[0], y = point[1];
+            let inside = false;
+            for (let i = 0, j = vs.length - 1; i < vs.length; j = i++) {
+                const xi = vs[i][0], yi = vs[i][1];
+                const xj = vs[j][0], yj = vs[j][1];
+
+                const intersect = ((yi > y) !== (yj > y)) && (x < (xj - xi) * (y - yi) / (yj - yi + 0.0) + xi);
+                if (intersect) inside = !inside;
+            }
+            return inside;
+        }
+
+        // Decide si una feature (Point/LineString/Polygon/MultiPolygon) tiene parte dentro de la delimitación
+        function featureIntersectsDelim(feature, delimCoords) {
+            if (!feature || !feature.geometry) return false;
+            const geom = feature.geometry;
+            // Helper para probar arrays de coordenadas (p. ej. rings)
+            function anyCoordInside(coords) {
+                for (let i = 0; i < coords.length; i++) {
+                    const c = coords[i];
+                    // coord could be [lon, lat] or nested
+                    if (Array.isArray(c[0])) {
+                        if (anyCoordInside(c)) return true;
+                    } else {
+                        if (pointInPolygon(c, delimCoords)) return true;
+                    }
+                }
+                return false;
+            }
+
+            if (geom.type === 'Point') {
+                return pointInPolygon(geom.coordinates, delimCoords);
+            }
+            if (geom.type === 'LineString' || geom.type === 'MultiPoint') {
+                return anyCoordInside(geom.coordinates);
+            }
+            if (geom.type === 'Polygon' || geom.type === 'MultiLineString') {
+                return anyCoordInside(geom.coordinates);
+            }
+            if (geom.type === 'MultiPolygon') {
+                return anyCoordInside(geom.coordinates);
+            }
+            return false;
+        }
+
+        // Convierte la respuesta de Overpass (out geom) a GeoJSON simple
+        function overpassToGeoJSON(data) {
+            const features = [];
+            if (!data || !data.elements) return { type: 'FeatureCollection', features };
+            data.elements.forEach(el => {
+                try {
+                    if (el.type === 'node') {
+                        features.push({
+                            type: 'Feature',
+                            properties: el.tags || {},
+                            geometry: { type: 'Point', coordinates: [el.lon, el.lat] }
+                        });
+                    } else if ((el.type === 'way' || el.type === 'relation') && el.geometry) {
+                        const coords = el.geometry.map(p => [p.lon, p.lat]);
+                        if (coords.length >= 3) {
+                            // Asegurar anillo cerrado
+                            const first = coords[0];
+                            const last = coords[coords.length - 1];
+                            if (first[0] !== last[0] || first[1] !== last[1]) coords.push(first);
+                            features.push({
+                                type: 'Feature',
+                                properties: el.tags || {},
+                                geometry: { type: 'Polygon', coordinates: [coords] }
+                            });
+                        } else {
+                            features.push({
+                                type: 'Feature',
+                                properties: el.tags || {},
+                                geometry: { type: 'LineString', coordinates: coords }
+                            });
+                        }
+                    }
+                } catch (err) {
+                    console.warn('Error convirtiendo elemento Overpass a GeoJSON', err, el);
+                }
+            });
+            return { type: 'FeatureCollection', features };
+        }
+
+        // Cargar áreas verdes usando Overpass (bbox: {south,west,north,east})
+        function loadGreenAreas(bbox) {
+            if (greenLayerLoaded) return;
+            console.log('Cargando zonas verdes, bbox=', bbox);
+
+            const s = bbox.south, w = bbox.west, n = bbox.north, e = bbox.east;
+            const query = `
+[out:json][timeout:25];
+(
+  way["leisure"="park"](${s},${w},${n},${e});
+  relation["leisure"="park"](${s},${w},${n},${e});
+  way["natural"="wood"](${s},${w},${n},${e});
+  relation["natural"="wood"](${s},${w},${n},${e});
+  way["landuse"="grass"](${s},${w},${n},${e});
+  relation["landuse"="grass"](${s},${w},${n},${e});
+  way["landuse"="recreation_ground"](${s},${w},${n},${e});
+  relation["landuse"="recreation_ground"](${s},${w},${n},${e});
+);
+out body geom;
+`;
+
+            fetch('https://overpass-api.de/api/interpreter', {
+                method: 'POST',
+                body: query,
+                headers: { 'Content-Type': 'text/plain' }
+            })
+            .then(r => r.json())
+            .then(data => {
+                const geojson = overpassToGeoJSON(data);
+                // Si tenemos la delimitación, filtrar features para que sólo queden las que intersectan
+                let features = geojson.features || [];
+                if (delimPolygonCoordsLonLat) {
+                    features = features.filter(f => featureIntersectsDelim(f, delimPolygonCoordsLonLat));
+                }
+                const filtered = { type: 'FeatureCollection', features };
+                greenLayer.addData(filtered);
+                // No añadir automáticamente a map: controlaremos visibilidad según basemap
+                greenLayerLoaded = true;
+                updateGreenLayerVisibility();
+                console.log('Zonas verdes cargadas (dentro de delimitación):', filtered.features.length, 'features');
+            })
+            .catch(err => {
+                console.error('Error cargando zonas verdes desde Overpass:', err);
+            });
+        }
         
         // Cargar la delimitación personalizada desde el archivo JSON
         fetch('delimitation.json')
             .then(response => response.json())
             .then(data => {
                 const coordinates = data.features[0].geometry.coordinates[0];
-                
+
+                // Guardar la delimitación en formato [lng, lat] para filtrar Overpass
+                delimPolygonCoordsLonLat = coordinates.slice();
+
                 // Convertir coordenadas de [lng, lat] a [lat, lng] para Leaflet
                 const polygonCoords = coordinates.map(coord => [coord[1], coord[0]]);
                 
@@ -421,6 +861,21 @@
                     fillOpacity: 0.6,
                     interactive: false
                 }).addTo(map);
+
+                // Calcular bbox a partir de la delimitación y cargar zonas verdes
+                try {
+                    const lats = polygonCoords.map(c => c[0]);
+                    const lngs = polygonCoords.map(c => c[1]);
+                    const bbox = {
+                        south: Math.min.apply(null, lats),
+                        north: Math.max.apply(null, lats),
+                        west: Math.min.apply(null, lngs),
+                        east: Math.max.apply(null, lngs)
+                    };
+                    loadGreenAreas(bbox);
+                } catch (err) {
+                    console.warn('No se pudo calcular bbox para zonas verdes:', err);
+                }
             })
             .catch(error => {
                 console.error('Error al cargar la delimitación:', error);
@@ -430,9 +885,146 @@
         const audioContainer = document.getElementById('audio-container');
         const mixerTracks = document.getElementById('mixer-tracks');
         
-        // Variable para rastrear el popup de video abierto y audios activos
-        let currentVideoPopup = null;
+        // Variables para rastrear el video activo y audios activos
+        let currentVideoPopup = null; // (legacy name, kept for compatibility)
+        let currentVideoMarker = null; // marcador cuyo video está abierto en el panel
         let activeAudios = new Map(); // Guarda los audios activos por ID de ubicación
+
+        // Elementos del panel de video
+    const videoPanel = document.getElementById('video-panel');
+    const sideVideo = document.getElementById('side-video');
+    // target the inner title text span so updates don't clobber the mini-icon element
+    const videoTitleEl = videoPanel ? videoPanel.querySelector('.video-title .title-text') : null;
+
+        function openVideoPanel(location, marker) {
+            try {
+                // Restaurar estilo del video anterior si existe
+                if (currentVideoMarker && currentVideoMarker !== marker) {
+                    try { updateMarkerStyle(currentVideoMarker, false); } catch (e) {}
+                }
+
+                // Marcar el actual como activo (badge gris)
+                currentVideoMarker = marker;
+                try { updateMarkerStyle(marker, true); } catch (e) {}
+
+                // Configurar fuente y título
+                if (sideVideo) {
+                    sideVideo.pause();
+                    sideVideo.src = location.file;
+                    sideVideo.currentTime = 0;
+                    sideVideo.play().catch(() => {});
+                }
+                if (videoTitleEl) videoTitleEl.textContent = location.title || 'Video';
+
+                if (videoPanel) {
+                    videoPanel.style.display = '';
+                    videoPanel.classList.remove('minimized');
+                    // ensure the panel fits the viewport (responsive adjustment)
+                    try { ensureVideoPanelFits(); } catch (e) {}
+                    // restore minimize button icon to 'minimize'
+                    try {
+                        const vMinBtn = document.getElementById('video-minimize');
+                        if (vMinBtn) vMinBtn.innerHTML = '<i class="fas fa-window-minimize"></i>';
+                    } catch (e) {}
+                }
+            } catch (err) {
+                console.warn('No se pudo abrir el panel de video', err);
+            }
+        }
+
+        function closeVideoPanel() {
+            try {
+                if (sideVideo) {
+                    sideVideo.pause();
+                    sideVideo.src = '';
+                }
+                if (currentVideoMarker) {
+                    try { updateMarkerStyle(currentVideoMarker, false); } catch (e) {}
+                    currentVideoMarker = null;
+                }
+                if (videoPanel) videoPanel.style.display = 'none';
+            } catch (err) { console.warn(err); }
+        }
+
+        function toggleMinimizeVideo() {
+            if (!videoPanel) return;
+            const isNowMin = videoPanel.classList.toggle('minimized');
+            // If minimized, force the inline size to the compact dimensions so CSS isn't
+            // overridden by previously set inline width/height from ensureVideoPanelFits.
+            try {
+                const vMinBtn = document.getElementById('video-minimize');
+                if (isNowMin) {
+                    videoPanel.style.width = 'auto';
+                    videoPanel.style.height = '44px';
+                    // pause video to avoid continued playback while minimized
+                    if (sideVideo && !sideVideo.paused) sideVideo.pause();
+                    // change minimize icon to 'restore' affordance
+                    if (vMinBtn) vMinBtn.innerHTML = '<i class="fas fa-window-restore"></i>';
+                } else {
+                    // Remove explicit inline sizing and recompute responsive size
+                    videoPanel.style.width = '';
+                    videoPanel.style.height = '';
+                    ensureVideoPanelFits();
+                    // restore icon to minimize
+                    if (vMinBtn) vMinBtn.innerHTML = '<i class="fas fa-window-minimize"></i>';
+                }
+            } catch (e) { /* no-op */ }
+        }
+
+        // Conectar botones del panel
+        try {
+            const vClose = document.getElementById('video-close');
+            const vMin = document.getElementById('video-minimize');
+            if (vClose) vClose.addEventListener('click', closeVideoPanel);
+            if (vMin) vMin.addEventListener('click', toggleMinimizeVideo);
+        } catch (err) { }
+
+        // Make the header clickable when minimized to restore the panel
+        try {
+            const headerEl = videoPanel ? videoPanel.querySelector('.video-header') : null;
+            if (headerEl) {
+                headerEl.addEventListener('click', function(e) {
+                    // Ignore clicks that originate inside the action buttons (to avoid double-toggle)
+                    if (e.target && e.target.closest && e.target.closest('.video-actions')) return;
+                    // only toggle (restore) if currently minimized
+                    if (videoPanel && videoPanel.classList.contains('minimized')) {
+                        toggleMinimizeVideo();
+                    }
+                });
+            }
+            // Prevent the minimize/close buttons from letting the header handler double-toggle
+            const vMinBtn = document.getElementById('video-minimize');
+            if (vMinBtn) vMinBtn.addEventListener('click', function(ev) { ev.stopPropagation(); });
+            const vCloseBtn = document.getElementById('video-close');
+            if (vCloseBtn) vCloseBtn.addEventListener('click', function(ev) { ev.stopPropagation(); });
+        } catch (err) { /* ignore */ }
+
+        // Ensure the video panel fits the viewport and doesn't overflow
+        function ensureVideoPanelFits() {
+            if (!videoPanel) return;
+            // If hidden or minimized, nothing to adjust
+            if (videoPanel.style.display === 'none' || videoPanel.classList.contains('minimized')) return;
+            // Responsive width/height limits
+            const maxW = Math.floor(window.innerWidth * 0.92);
+            const preferW = Math.min(360, Math.floor(window.innerWidth * 0.45));
+            const newW = Math.min(preferW, maxW);
+
+            const maxH = Math.floor(window.innerHeight * 0.8);
+            const preferH = Math.min(260, Math.floor(window.innerHeight * 0.5));
+            const newH = Math.min(preferH, maxH);
+
+            videoPanel.style.width = newW + 'px';
+            videoPanel.style.height = newH + 'px';
+
+            // Keep it slightly inset from edges
+            videoPanel.style.right = '12px';
+            videoPanel.style.bottom = '12px';
+        }
+
+        // Adjust when resizing window so the panel never overflows
+        window.addEventListener('resize', function() {
+            try { ensureVideoPanelFits(); } catch (e) {}
+        });
         
         // Función para cerrar todos los audios
         function closeAllAudios() {
@@ -617,20 +1209,30 @@
         
         // Función para actualizar el estilo del marcador
         function updateMarkerStyle(marker, isActive) {
+            if (!marker) return;
             const iconElement = marker.getElement();
             if (iconElement) {
-                const circle = iconElement.querySelector('div');
+                const circle = iconElement.querySelector('.marker-core');
+                const badgeIcon = iconElement.querySelector('.media-badge i');
+                const badge = iconElement.querySelector('.media-badge');
                 if (circle) {
                     if (isActive) {
                         // Estilo activo - verde
                         circle.style.borderColor = '#10b981';
                         circle.style.background = '#d1fae5';
                         circle.style.color = '#10b981';
+                        // Poner la insignia de media en gris mientras está activo
+                        if (badgeIcon) badgeIcon.style.color = '#6b7280';
+                        if (badge) badge.style.borderColor = '#6b7280';
                     } else {
-                        // Estilo inactivo - gris
-                        circle.style.borderColor = '#666';
+                        // Restaurar el color original de la categoría si existe
+                        const orig = marker._origColor || '#666';
+                        circle.style.borderColor = orig;
                         circle.style.background = 'white';
-                        circle.style.color = '#666';
+                        circle.style.color = orig;
+                        // Restaurar color de la insignia al color de la categoría
+                        if (badgeIcon) badgeIcon.style.color = orig;
+                        if (badge) badge.style.borderColor = orig;
                     }
                 }
             }
@@ -640,100 +1242,193 @@
         fetch('locations.json')
             .then(response => response.json())
             .then(locations => {
-                locations.forEach(location => {
-                    // Crear icono personalizado según el tipo
-                    let iconHTML = '';
-                    let iconColor = '';
-                    
-                    if (location.type === 'video') {
-                        iconHTML = '<i class="fas fa-video"></i>';
-                        iconColor = '#1a1a1a';
-                    } else if (location.type === 'audio') {
-                        iconHTML = '<i class="fas fa-music"></i>';
-                        iconColor = '#666';
+                // Mapa de iconos por categoría (íconos más descriptivos)
+                const categoryMap = {
+                    // Colores distintos por categoría (más contrastados entre sí)
+                    'Sonidos objetos': { icon: 'fa-box-open', color: '#6366F1' }, // indigo
+                    'Cantantes o instrumentos': { icon: 'fa-guitar', color: '#06B6D4' }, // cyan/teal
+                    'Eventos': { icon: 'fa-calendar-check', color: '#F59E0B' }, // amber
+                    'Bailadores': { icon: 'fa-users', color: '#EF4444' }, // red
+                    'Vendedores': { icon: 'fa-store', color: '#F97316' }, // orange
+                    'Sonidos Naturales': { icon: 'fa-tree', color: '#10B981' } // green
+                };
+
+                // Inicializar la leyenda usando categoryMap
+                const legend = document.getElementById('map-legend');
+                const legendBody = document.getElementById('legend-body');
+
+                function buildLegend() {
+                    // Vaciar contenedor de items para reconstruir
+                    const legendItems = document.getElementById('legend-items');
+                    if (!legendItems) return;
+                    legendItems.innerHTML = '';
+                    Object.keys(categoryMap).forEach(cat => {
+                        const info = categoryMap[cat];
+                        const row = document.createElement('div');
+                        row.className = 'legend-row';
+
+                        const iconBox = document.createElement('div');
+                        iconBox.className = 'legend-icon';
+                        iconBox.style.background = info.color;
+                        iconBox.innerHTML = `<i class="fas ${info.icon}"></i>`;
+
+                        const label = document.createElement('div');
+                        label.className = 'legend-label';
+                        label.textContent = cat;
+
+                        row.appendChild(iconBox);
+                        row.appendChild(label);
+                        legendItems.appendChild(row);
+                    });
+                }
+
+                // Hover behavior: show legend on hover of the layers control, hide when leaving
+                let legendHideTimer = null;
+                function showLegend() {
+                    if (legendHideTimer) { clearTimeout(legendHideTimer); legendHideTimer = null; }
+
+                    try {
+                        const legendBtn = document.getElementById('legend-btn');
+                        if (legendBtn) {
+                            const btnRect = legendBtn.getBoundingClientRect();
+                            const legendWidth = Math.min(320, Math.floor(window.innerWidth * 0.9));
+                            // set width first so height measurement is correct
+                            legend.style.width = legendWidth + 'px';
+
+                            // Make legend active (but hidden) to measure its height
+                            legend.classList.add('active');
+                            legend.style.visibility = 'hidden';
+                            const lh = legend.offsetHeight || 150;
+
+                            // Compute left so legend is centered above the button but stays within viewport
+                            let left = Math.round(btnRect.left + btnRect.width / 2 - legendWidth / 2);
+                            left = Math.max(8, Math.min(left, window.innerWidth - legendWidth - 8));
+
+                            // Compute top so legend overlaps the button (covers it partially)
+                            // Position legend so its bottom sits slightly below the button center
+                            let top = Math.round(btnRect.top + btnRect.height / 2 - lh);
+                            // Ensure it doesn't go off the top of the viewport
+                            top = Math.max(8, top);
+
+                            legend.style.left = left + 'px';
+                            legend.style.top = top + 'px';
+                            // remove temporary hidden flag so it becomes visible
+                            legend.style.visibility = '';
+                        } else {
+                            legend.classList.add('active');
+                        }
+                    } catch (err) {
+                        console.warn('No se pudo posicionar la leyenda dinámicamente', err);
+                        legend.classList.add('active');
                     }
-                    
-                    // Crear icono personalizado para Leaflet
+
+                    // hide the legend button while legend is visible (so the legend covers it)
+                    try {
+                        const lb = document.getElementById('legend-btn');
+                        if (lb) lb.style.display = 'none';
+                    } catch (err) {}
+
+                    legend.setAttribute('aria-hidden', 'false');
+                }
+                function hideLegendSoon() {
+                    if (legendHideTimer) clearTimeout(legendHideTimer);
+                    legendHideTimer = setTimeout(() => {
+                        legend.classList.remove('active');
+                        legend.setAttribute('aria-hidden', 'true');
+                        // restore the legend button visibility when legend is hidden
+                        try {
+                            const lb = document.getElementById('legend-btn');
+                            if (lb) lb.style.display = '';
+                        } catch (err) {}
+                    }, 300);
+                }
+
+                // Attach hover listeners to the layer control container to open the layers menu on hover
+                // and keep legend behavior independent via its own button
+                try {
+                    const layersContainer = layerControl.getContainer();
+                    // Open layers menu when hovering
+                    let layersCloseTimer = null;
+                    layersContainer.addEventListener('mouseenter', () => {
+                        if (layersCloseTimer) { clearTimeout(layersCloseTimer); layersCloseTimer = null; }
+                        layersContainer.classList.add('leaflet-control-layers-expanded');
+                    });
+                    layersContainer.addEventListener('mouseleave', () => {
+                        if (layersCloseTimer) clearTimeout(layersCloseTimer);
+                        layersCloseTimer = setTimeout(() => {
+                            layersContainer.classList.remove('leaflet-control-layers-expanded');
+                        }, 250);
+                    });
+
+                    // Legend button shows legend independently
+                    const legendBtn = document.getElementById('legend-btn');
+                    if (legendBtn) {
+                        legendBtn.addEventListener('mouseenter', showLegend);
+                        legendBtn.addEventListener('mouseleave', hideLegendSoon);
+                    }
+                } catch (err) {
+                    console.warn('No se pudo enlazar hover con layerControl:', err);
+                }
+
+                legend.addEventListener('mouseenter', () => { if (legendHideTimer) { clearTimeout(legendHideTimer); legendHideTimer = null; } });
+                legend.addEventListener('mouseleave', hideLegendSoon);
+
+                        // Nota: el botón de cierre de la leyenda fue removido; cerrar se hace con mouseleave o programáticamente
+
+                // Construir leyenda la primera vez
+                buildLegend();
+
+                locations.forEach(location => {
+                    const category = location.category || 'Uncategorized';
+                    const catInfo = categoryMap[category] || { icon: 'fa-map-marker-alt', color: '#666' };
+
+                    // Si no hay lat/lng, no creamos marcador (el usuario agregará coordenadas más tarde)
+                    if (!location.lat || !location.lng) {
+                        // Guardar la ubicación sin marcador (se puede listar en UI más adelante)
+                        location.marker = null;
+                        return;
+                    }
+
+                    // Crear html del icono según la categoría
+                    const iconHTML = `<i class="fas ${catInfo.icon}"></i>`;
+
+                    // badge icon depending on media type
+                    const mediaIcon = location.type === 'video' ? 'fa-video' : (location.type === 'audio' ? 'fa-volume-up' : '');
+                    const badgeHTML = mediaIcon ? `<div class="media-badge" style="border-color: ${catInfo.color};"><i class="fas ${mediaIcon}" style="color: ${catInfo.color};"></i></div>` : '';
+
                     const customIcon = L.divIcon({
                         className: 'custom-marker',
                         html: `
-                            <div style="
-                                background: white;
-                                border: 2px solid ${iconColor};
-                                border-radius: 50%;
-                                width: 40px;
-                                height: 40px;
-                                display: flex;
-                                align-items: center;
-                                justify-content: center;
-                                box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-                                color: ${iconColor};
-                                font-size: 16px;
-                            ">
-                                ${iconHTML}
+                            <div style="position:relative; display:inline-block;">
+                                <div class="marker-core" style="border-color: ${catInfo.color}; color: ${catInfo.color};">
+                                    ${iconHTML}
+                                </div>
+                                ${badgeHTML}
                             </div>
                         `,
-                        iconSize: [40, 40],
-                        iconAnchor: [20, 20],
-                        popupAnchor: [0, -20]
+                        iconSize: [36, 36],
+                        iconAnchor: [18, 18],
+                        popupAnchor: [0, -18]
                     });
-                    
+
                     // Crear marcador con icono personalizado
                     const marker = L.marker([location.lat, location.lng], { icon: customIcon }).addTo(map);
-                    
-                    // Guardar referencia del marcador en la ubicación
+                    // Guardar el color original del marcador para restaurarlo luego
+                    marker._origColor = catInfo.color;
                     location.marker = marker;
-                    
-                    // Crear contenido del popup solo para videos
-                    if (location.type === 'video') {
-                        const mediaHTML = `
-                            <div class="media-popup">
-                                <h3>${location.title}</h3>
-                                <video controls autoplay>
-                                    <source src="${location.file}" type="video/mp4">
-                                    Tu navegador no soporta el elemento de video.
-                                </video>
-                            </div>
-                        `;
-                        
-                        // Vincular popup solo a marcadores de video
-                        marker.bindPopup(mediaHTML, {
-                            closeButton: true,      // Mostrar botón X
-                            autoClose: false,       // No cerrar automáticamente al abrir otro popup
-                            closeOnClick: false     // No cerrar al hacer click en el mapa
-                        });
-                        
-                        // Guardar referencia cuando se abre un popup de video
-                        marker.on('popupopen', function() {
-                            // Si hay otro video abierto, cerrarlo
-                            if (currentVideoPopup && currentVideoPopup !== marker) {
-                                currentVideoPopup.closePopup();
-                            }
-                            currentVideoPopup = marker;
-                        });
-                        
-                        // Limpiar referencia cuando se cierra
-                        marker.on('popupclose', function() {
-                            if (currentVideoPopup === marker) {
-                                currentVideoPopup = null;
-                            }
-                        });
-                    }
-                    
-                    // Al hacer click, manejar la reproducción
+
+                    // No popup for videos: usaremos un panel lateral no bloqueante para reproducir video
+
+                    // Click en marcador: si es audio, añadir al mezclador; si es video, abrir en el panel lateral
                     marker.on('click', function(e) {
                         if (location.type === 'audio') {
-                            // Prevenir el comportamiento por defecto del marcador
-                            e.originalEvent.preventDefault();
-                            e.originalEvent.stopPropagation();
-                            
-                            // Prevenir que Leaflet cierre otros popups
                             L.DomEvent.stopPropagation(e);
-                            
-                            // Agregar audio al mezclador sin afectar popups abiertos
                             createAudioTrack(location);
-                            
-                            // No abrir popup para audios
+                            return false;
+                        }
+                        if (location.type === 'video') {
+                            L.DomEvent.stopPropagation(e);
+                            openVideoPanel(location, marker);
                             return false;
                         }
                     });
