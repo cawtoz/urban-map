@@ -1215,24 +1215,20 @@ out body geom;
                 const circle = iconElement.querySelector('.marker-core');
                 const badgeIcon = iconElement.querySelector('.media-badge i');
                 const badge = iconElement.querySelector('.media-badge');
-                if (circle) {
+                // Only change the media badge when toggling active state.
+                // Do NOT alter the main category marker colors here (user preference).
+                if (badge) {
                     if (isActive) {
-                        // Estilo activo - verde
-                        circle.style.borderColor = '#10b981';
-                        circle.style.background = '#d1fae5';
-                        circle.style.color = '#10b981';
-                        // Poner la insignia de media en gris mientras está activo
+                        // badge goes gray when active
                         if (badgeIcon) badgeIcon.style.color = '#6b7280';
-                        if (badge) badge.style.borderColor = '#6b7280';
+                        badge.style.borderColor = '#6b7280';
+                        badge.style.background = '#ffffff';
                     } else {
-                        // Restaurar el color original de la categoría si existe
+                        // restore badge to the category color
                         const orig = marker._origColor || '#666';
-                        circle.style.borderColor = orig;
-                        circle.style.background = 'white';
-                        circle.style.color = orig;
-                        // Restaurar color de la insignia al color de la categoría
                         if (badgeIcon) badgeIcon.style.color = orig;
-                        if (badge) badge.style.borderColor = orig;
+                        badge.style.borderColor = orig;
+                        badge.style.background = '#ffffff';
                     }
                 }
             }
@@ -1248,8 +1244,8 @@ out body geom;
                     'Sonidos objetos': { icon: 'fa-box-open', color: '#6366F1' }, // indigo
                     'Cantantes o instrumentos': { icon: 'fa-guitar', color: '#06B6D4' }, // cyan/teal
                     'Eventos': { icon: 'fa-calendar-check', color: '#F59E0B' }, // amber
-                    'Bailadores': { icon: 'fa-users', color: '#EF4444' }, // red
-                    'Vendedores': { icon: 'fa-store', color: '#F97316' }, // orange
+                    'Bailadores': { icon: 'fa-theater-masks', color: '#EF4444' }, // performers/dancers
+                    'Vendedores': { icon: 'fa-store', color: '#7C3AED' }, // violet (differentiador)
                     'Sonidos Naturales': { icon: 'fa-tree', color: '#10B981' } // green
                 };
 
