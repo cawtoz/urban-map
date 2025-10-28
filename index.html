@@ -628,10 +628,11 @@
         // Topo removed per user request
 
         // Inicializar el mapa con Positron por defecto. No cerrar popup al hacer click.
+        // Centro fijo en Capuchina (ajustado mucho más a la derecha)
         const map = L.map('map', {
             closePopupOnClick: false,
             layers: [pos]
-        }).setView([4.5970, -74.0720], 15);
+        }).setView([4.604169891807999, -74.07385381204059], 15);
 
         // Control para cambiar entre basemaps (guardamos referencia para añadir overlays dinámicos)
         const baseLayers = {
@@ -670,9 +671,14 @@
             }
         });
 
-        let greenLayerLoaded = false;
-        // Coordenadas de la delimitación en formato [lng, lat] tal como vienen en delimitation.json
-        let delimPolygonCoordsLonLat = null;
+    let greenLayerLoaded = false;
+    // Coordenadas de las delimitaciones en formato [lng, lat]
+    // Ahora soportamos múltiples polígonos (capuchina.json y veracruz.json)
+    let delimPolygonsCoordsLonLat = [];
+    
+    // Variables para la máscara circular
+    let outsideCircleMask = null;
+    let outsideCircleOutline = null;
 
         // Controla visibilidad de greenLayer según basemap activo
         function updateGreenLayerVisibility() {
@@ -810,10 +816,10 @@ out body geom;
             .then(r => r.json())
             .then(data => {
                 const geojson = overpassToGeoJSON(data);
-                // Si tenemos la delimitación, filtrar features para que sólo queden las que intersectan
+                // Si tenemos delimitaciones, filtrar features para que sólo queden las que intersectan
                 let features = geojson.features || [];
-                if (delimPolygonCoordsLonLat) {
-                    features = features.filter(f => featureIntersectsDelim(f, delimPolygonCoordsLonLat));
+                if (delimPolygonsCoordsLonLat && delimPolygonsCoordsLonLat.length) {
+                    features = features.filter(f => featureIntersectsAnyDelim(f, delimPolygonsCoordsLonLat));
                 }
                 const filtered = { type: 'FeatureCollection', features };
                 greenLayer.addData(filtered);
@@ -827,45 +833,69 @@ out body geom;
             });
         }
         
-        // Cargar la delimitación personalizada desde el archivo JSON
-        fetch('delimitation.json')
-            .then(response => response.json())
-            .then(data => {
-                const coordinates = data.features[0].geometry.coordinates[0];
-
-                // Guardar la delimitación en formato [lng, lat] para filtrar Overpass
-                delimPolygonCoordsLonLat = coordinates.slice();
-
-                // Convertir coordenadas de [lng, lat] a [lat, lng] para Leaflet
-                const polygonCoords = coordinates.map(coord => [coord[1], coord[0]]);
-                
-                // Dibujar el borde de la zona delimitada
-                L.polygon(polygonCoords, {
-                    color: '#1a1a1a',
-                    weight: 2,
-                    fillOpacity: 0,
-                    interactive: false
-                }).addTo(map);
-                
-                // Crear máscara oscura fuera de la zona delimitada
-                const worldBounds = [
-                    [85, -180], [85, 180], [-85, 180], [-85, -180]
-                ];
-                
-                // Invertir el orden para crear el agujero correctamente
-                const invertedCoords = [...polygonCoords].reverse();
-                
-                L.polygon([worldBounds, invertedCoords], {
-                    color: 'transparent',
-                    fillColor: '#000',
-                    fillOpacity: 0.6,
-                    interactive: false
-                }).addTo(map);
-
-                // Calcular bbox a partir de la delimitación y cargar zonas verdes
+        // Helper: comprobar si una feature intersecta alguna de las delimitaciones
+        function featureIntersectsAnyDelim(feature, polygons) {
+            if (!polygons || !polygons.length) return false;
+            for (let i = 0; i < polygons.length; i++) {
                 try {
-                    const lats = polygonCoords.map(c => c[0]);
-                    const lngs = polygonCoords.map(c => c[1]);
+                    if (featureIntersectsDelim(feature, polygons[i])) return true;
+                } catch (e) { /* continue */ }
+            }
+            return false;
+        }
+
+        // Cargar las delimitaciones desde capichian.json y veracruz.json
+        Promise.all([
+            fetch('capuchina.json').then(r => r.json()).catch(() => null),
+            fetch('veracruz.json').then(r => r.json()).catch(() => null)
+        ])
+        .then(datasets => {
+            try {
+                const drawCoordsForBbox = [];
+                const styles = [
+                    { stroke: '#1e78c8', fill: 'rgba(30,120,200,0.08)' }, // suave azul
+                    { stroke: '#8b5a2b', fill: 'rgba(139,90,43,0.06)' }   // suave barro/marrón
+                ];
+
+                datasets.forEach((data, idx) => {
+                    if (!data || !data.features) return;
+                    data.features.forEach((feat) => {
+                        if (!feat.geometry) return;
+                        // Soportar Polygon y MultiPolygon (usar el primer anillo)
+                        let coords = [];
+                        if (feat.geometry.type === 'Polygon') {
+                            coords = feat.geometry.coordinates[0];
+                        } else if (feat.geometry.type === 'MultiPolygon') {
+                            coords = feat.geometry.coordinates[0][0];
+                        } else {
+                            return;
+                        }
+
+                        // Guardar en formato [lng, lat] para uso en pointInPolygon
+                        delimPolygonsCoordsLonLat.push(coords.slice());
+
+                        // Convertir a [lat, lng] para Leaflet
+                        const polygonCoords = coords.map(c => [c[1], c[0]]);
+
+                        // Dibujar polígono con estilo sutil
+                        const s = styles[idx % styles.length];
+                        L.polygon(polygonCoords, {
+                            color: s.stroke,
+                            weight: 1.5,
+                            fillColor: s.fill,
+                            fillOpacity: 1,
+                            interactive: false
+                        }).addTo(map);
+
+                        // Añadir las coordenadas al array para cálculo de bbox
+                        polygonCoords.forEach(pc => drawCoordsForBbox.push(pc));
+                    });
+                });
+
+                // Si tenemos coordenadas, calcular bbox y cargar zonas verdes
+                if (drawCoordsForBbox.length) {
+                    const lats = drawCoordsForBbox.map(c => c[0]);
+                    const lngs = drawCoordsForBbox.map(c => c[1]);
                     const bbox = {
                         south: Math.min.apply(null, lats),
                         north: Math.max.apply(null, lats),
@@ -873,13 +903,14 @@ out body geom;
                         east: Math.max.apply(null, lngs)
                     };
                     loadGreenAreas(bbox);
-                } catch (err) {
-                    console.warn('No se pudo calcular bbox para zonas verdes:', err);
                 }
-            })
-            .catch(error => {
-                console.error('Error al cargar la delimitación:', error);
-            });
+            } catch (err) {
+                console.error('Error procesando delimitaciones:', err);
+            }
+        })
+        .catch(err => {
+            console.error('Error cargando archivos de delimitación:', err);
+        });
         
         // Referencias al contenedor de audio
         const audioContainer = document.getElementById('audio-container');
@@ -1429,6 +1460,96 @@ out body geom;
                         }
                     });
                 });
+
+                // Crear máscara circular invertida centrada en Capuchina
+                try {
+                    console.log('Iniciando creación de máscara circular...');
+                    const locCoords = locations.filter(l => l.lat && l.lng).map(l => L.latLng(l.lat, l.lng));
+                    console.log('Ubicaciones con coordenadas:', locCoords.length);
+                    
+                    if (locCoords.length) {
+                        // Centro ajustado: mucho más a la derecha (lng más positivo = este)
+                        const center = L.latLng(4.604169891807999, -74.07385381204059);
+                        console.log('Centro del círculo:', center.toString());
+
+                        // Calcular la distancia máxima desde el centro a cualquier ubicación (metros)
+                        let maxDist = 0;
+                        locCoords.forEach(ll => {
+                            const d = map.distance(center, ll);
+                            if (d > maxDist) maxDist = d;
+                        });
+
+                        // Reducir el radio: padding del 3% (más chico)
+                        const radius = Math.ceil(maxDist * 1.5);
+                        console.log('Radio calculado:', radius, 'metros (', Math.round(radius), 'm )');
+
+                        // PRIMERO: Dibujar el círculo visible (contorno blanco)
+                        outsideCircleOutline = L.circle(center, {
+                            radius: radius,
+                            color: '#ffffff',
+                            weight: 3,
+                            opacity: 1,
+                            fill: false,
+                            interactive: false
+                        }).addTo(map);
+                        console.log('Contorno del círculo añadido al mapa');
+
+                        // SEGUNDO: Crear la máscara invertida (oscurecer afuera)
+                        // Generar puntos del círculo manualmente para mayor control
+                        const circlePoints = [];
+                        const steps = 64;
+                        for (let i = 0; i <= steps; i++) {
+                            const angle = (i / steps) * 2 * Math.PI;
+                            const dx = radius * Math.cos(angle);
+                            const dy = radius * Math.sin(angle);
+                            
+                            // Calcular lat/lng del punto en el círculo
+                            const earthRadius = 6371000; // metros
+                            const dLat = (dy / earthRadius) * (180 / Math.PI);
+                            const dLng = (dx / (earthRadius * Math.cos(center.lat * Math.PI / 180))) * (180 / Math.PI);
+                            
+                            circlePoints.push([center.lat + dLat, center.lng + dLng]);
+                        }
+
+                        // Invertir puntos para crear agujero
+                        const innerRing = circlePoints.reverse();
+
+                        // Polígono grande (mundo) para crear el efecto de máscara invertida
+                        const worldBounds = [
+                            [85, -180], [85, 180], [-85, 180], [-85, -180], [85, -180]
+                        ];
+
+                        // Si ya hay una máscara previa, eliminarla
+                        if (outsideCircleMask && map.hasLayer(outsideCircleMask)) {
+                            map.removeLayer(outsideCircleMask);
+                        }
+
+                        outsideCircleMask = L.polygon([worldBounds, innerRing], {
+                            color: 'transparent',
+                            fillColor: '#000',
+                            fillOpacity: 0.65,
+                            interactive: false
+                        }).addTo(map);
+                        console.log('Máscara invertida añadida al mapa');
+
+                        // Traer al frente ambas capas
+                        setTimeout(() => {
+                            try { 
+                                if (outsideCircleMask) outsideCircleMask.bringToFront(); 
+                            } catch (e) { console.warn('No se pudo traer máscara al frente:', e); }
+                            
+                            try { 
+                                if (outsideCircleOutline) outsideCircleOutline.bringToFront(); 
+                            } catch (e) { console.warn('No se pudo traer contorno al frente:', e); }
+                        }, 100);
+
+                        console.log('✓ Máscara circular completada');
+                    } else {
+                        console.warn('No hay ubicaciones con coordenadas válidas');
+                    }
+                } catch (err) {
+                    console.error('Error creando la máscara circular:', err);
+                }
             })
             .catch(error => {
                 console.error('Error al cargar las ubicaciones:', error);
