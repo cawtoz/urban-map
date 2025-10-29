@@ -399,11 +399,55 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            padding: 8px 0;
+            padding: 8px 6px;
             border-bottom: 1px dashed #f5f5f5;
+            cursor: pointer;
+            transition: all 0.2s;
+            border-radius: 4px;
+            position: relative;
+        }
+
+        .legend-row:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        .legend-row.disabled {
+            opacity: 0.35;
+        }
+
+        .legend-row.disabled .legend-icon {
+            filter: grayscale(0.5);
         }
 
         .legend-row:last-child { border-bottom: none; }
+
+        /* Checkmark para categorías seleccionadas */
+        .legend-checkmark {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            border: 2px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            background: white;
+            transition: all 0.2s;
+        }
+
+        .legend-row:not(.disabled) .legend-checkmark {
+            background: #10B981;
+            border-color: #10B981;
+        }
+
+        .legend-row:not(.disabled) .legend-checkmark i {
+            color: white;
+            font-size: 11px;
+        }
+
+        .legend-row.disabled .legend-checkmark i {
+            display: none;
+        }
 
         .legend-icon {
             width: 34px;
@@ -594,18 +638,17 @@
         </div>
     </div>
 
-    <!-- Botón de leyenda independiente (muestra la leyenda al hacer hover) -->
-    <button id="legend-btn" class="help-btn" title="Leyenda"><i class="fas fa-info-circle"></i></button>
+    <!-- Botón de filtros independiente (muestra los filtros al hacer hover) -->
+    <button id="legend-btn" class="help-btn" title="Filtros de categorías"><i class="fas fa-filter"></i></button>
 
-    <!-- Panel de leyenda (oculto por defecto) -->
+    <!-- Panel de filtros (oculto por defecto) -->
     <aside id="map-legend" class="map-legend" aria-hidden="true">
         <div class="legend-header">
-            <strong>Leyenda</strong>
+            <strong><i class="fas fa-filter"></i> Filtros</strong>
         </div>
         <div id="legend-body" class="legend-body">
             <div id="legend-items" class="legend-items"></div>
         </div>
-        <div class="legend-footer">Haz clic en un marcador para reproducir audio o ver video.</div>
     </aside>
 
     <script>
@@ -1280,6 +1323,12 @@ out body geom;
                     'Sonidos Naturales': { icon: 'fa-tree', color: '#10B981' } // green
                 };
 
+                // Estado de categorías habilitadas (por defecto todas activas)
+                const enabledCategories = {};
+                Object.keys(categoryMap).forEach(cat => {
+                    enabledCategories[cat] = true;
+                });
+
                 // Inicializar la leyenda usando categoryMap
                 const legend = document.getElementById('map-legend');
                 const legendBody = document.getElementById('legend-body');
@@ -1293,6 +1342,17 @@ out body geom;
                         const info = categoryMap[cat];
                         const row = document.createElement('div');
                         row.className = 'legend-row';
+                        row.dataset.category = cat;
+                        
+                        // Aplicar clase disabled si la categoría está deshabilitada
+                        if (!enabledCategories[cat]) {
+                            row.classList.add('disabled');
+                        }
+
+                        // Checkmark visual
+                        const checkmark = document.createElement('div');
+                        checkmark.className = 'legend-checkmark';
+                        checkmark.innerHTML = '<i class="fas fa-check"></i>';
 
                         const iconBox = document.createElement('div');
                         iconBox.className = 'legend-icon';
@@ -1302,10 +1362,61 @@ out body geom;
                         const label = document.createElement('div');
                         label.className = 'legend-label';
                         label.textContent = cat;
+                        label.style.flex = '1';
 
+                        // Agregar click handler para toggle de categoría
+                        row.addEventListener('click', function() {
+                            toggleCategory(cat);
+                        });
+
+                        row.appendChild(checkmark);
                         row.appendChild(iconBox);
                         row.appendChild(label);
                         legendItems.appendChild(row);
+                    });
+                }
+
+                // Función para toggle de categorías
+                function toggleCategory(category) {
+                    // Cambiar el estado de la categoría
+                    enabledCategories[category] = !enabledCategories[category];
+                    
+                    // Actualizar la apariencia de la leyenda
+                    buildLegend();
+                    
+                    // Actualizar la visibilidad de los marcadores
+                    updateMarkersVisibility();
+                }
+
+                // Función para actualizar la visibilidad de los marcadores según las categorías habilitadas
+                function updateMarkersVisibility() {
+                    locations.forEach(location => {
+                        if (!location.marker) return;
+                        
+                        const category = location.category || 'Uncategorized';
+                        const isEnabled = enabledCategories[category];
+                        
+                        if (isEnabled) {
+                            // Mostrar marcador
+                            if (!map.hasLayer(location.marker)) {
+                                location.marker.addTo(map);
+                            }
+                        } else {
+                            // Ocultar marcador
+                            if (map.hasLayer(location.marker)) {
+                                map.removeLayer(location.marker);
+                                
+                                // Si este marcador tenía audio activo, eliminarlo del mixer
+                                if (location.type === 'audio' && activeAudios.has(location.id)) {
+                                    removeAudioTrack(location.id);
+                                }
+                                
+                                // Si este marcador tenía video abierto, cerrarlo
+                                if (location.type === 'video' && currentVideoMarker === location.marker) {
+                                    closeVideoPanel();
+                                }
+                            }
+                        }
                     });
                 }
 
@@ -1417,11 +1528,15 @@ out body geom;
                     }
 
                     // Crear html del icono según la categoría
-                    const iconHTML = `<i class="fas ${catInfo.icon}"></i>`;
-
-                    // badge icon depending on media type
-                    const mediaIcon = location.type === 'video' ? 'fa-video' : (location.type === 'audio' ? 'fa-volume-up' : '');
-                    const badgeHTML = mediaIcon ? `<div class="media-badge" style="border-color: ${catInfo.color};"><i class="fas ${mediaIcon}" style="color: ${catInfo.color};"></i></div>` : '';
+                        let iconColor = catInfo.color;
+                        let badgeColor = catInfo.color;
+                        if (!location.file) {
+                            iconColor = '#888';
+                            badgeColor = '#888';
+                        }
+                        const iconHTML = `<i class="fas ${catInfo.icon}" style="color: ${iconColor};"></i>`;
+                        const mediaIcon = location.type === 'video' ? 'fa-video' : (location.type === 'audio' ? 'fa-volume-up' : '');
+                        const badgeHTML = mediaIcon ? `<div class="media-badge" style="border-color: ${badgeColor};"><i class="fas ${mediaIcon}" style="color: ${badgeColor};"></i></div>` : '';
 
                     const customIcon = L.divIcon({
                         className: 'custom-marker',
