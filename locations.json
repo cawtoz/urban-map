@@ -17,7 +17,7 @@
         "lat": 4.602088371552142,
         "lng": -74.07256650379416,
         "type": "audio",
-        "file": "media/1. Categoria Sonidos objetos/Skaters_ParqueSantander.m4a"
+        "file": "media/1. Categoria Sonidos objetos/Skaters_ParqueSantander.wav"
     },
     {
         "id": 3,
@@ -26,8 +26,8 @@
         "address": "Calle 19 con Cra. 7ma",
         "lat": 4.605333112624464,
         "lng": -74.07162578973018,
-        "type": "video",
-        "file": "media/2. Categoria Cantantes o instumentos/Cantante_Cositasmalasdemi.mp4"
+        "type": "audio",
+        "file": "media/2. Categoria Cantantes o instumentos/Cantante_Cositasmalas.wav"
     },
     {
         "id": 4,
@@ -36,7 +36,7 @@
         "address": "Plazoleta del Rosario, esquina oriental",
         "lat": 4.600702083753035,
         "lng": -74.07300234707759,
-        "type": "video",
+        "type": "audio",
         "file": null
     },
     {
@@ -46,8 +46,8 @@
         "address": "Cra. 7ma con calle 14",
         "lat": 4.600964996543468,
         "lng": -74.07383268705205,
-        "type": "video",
-        "file": "media/2. Categoria Cantantes o instumentos/Cantante_Estoypensando.mp4"
+        "type": "audio",
+        "file": "media/2. Categoria Cantantes o instumentos/Cantante_Estoypensando_01.wav"
     },
     {
         "id": 6,
@@ -57,7 +57,7 @@
         "lat": 4.600976957759329,
         "lng": -74.07303001449466,
         "type": "audio",
-        "file": "media/2. Categoria Cantantes o instumentos/Gaitero Plazoleta Rosario Domingo BOG25.wav"
+        "file": "media/2. Categoria Cantantes o instumentos/Gaitero_Mistico.wav"
     },
     {
         "id": 7,
@@ -67,7 +67,7 @@
         "lat": 4.601478221303708,
         "lng": -74.073412456351,
         "type": "audio",
-        "file": "media/2. Categoria Cantantes o instumentos/Eje Ambiental Cra 4ta domingo con Ale.wav"
+        "file": "media/2. Categoria Cantantes o instumentos/Percusionistas_urbanos.wav"
     },
     {
         "id": 8,
@@ -86,8 +86,8 @@
         "address": "Cra. 7ma con Calle 17",
         "lat": 4.603530532730275,
         "lng": -74.0722757573915,
-        "type": "video",
-        "file": "media/3. Categoria Eventos/Evento cumple 35 Centro Libro 1.mp4"
+        "type": "audio",
+        "file": "media/3. Categoria Eventos/Evento_Cumple35Libro.wav"
     },
     {
         "id": 10,
@@ -96,7 +96,7 @@
         "address": "Callejón de los libros (Cra 8a con Calle 15)",
         "lat": 4.602842249353074,
         "lng": -74.0743134805837,
-        "type": "video",
+        "type": "audio",
         "file": null
     },
     {
@@ -106,8 +106,8 @@
         "address": "Frente a Iglesia San Francisco",
         "lat": 4.601951621505435,
         "lng": -74.07300733515225,
-        "type": "video",
-        "file": "media/3. Categoria Eventos/Performance Hombres Aluminio BOG25.mp4"
+        "type": "audio",
+        "file": "media/3. Categoria Eventos/Performance_Hombresaluminio_BOG25.wav"
     },
     {
         "id": 12,
@@ -116,8 +116,8 @@
         "address": "Cra. 7ma frente a Iglesia Veracruz",
         "lat": 4.602652098270596,
         "lng": -74.07288224160884,
-        "type": "video",
-        "file": "media/4. Categoria Bailadores/Señora bailando carranga 2.mp4"
+        "type": "audio",
+        "file": "media/4. Categoria Bailadores/Personaje_Carrangabaile.wav"
     },
     {
         "id": 13,
@@ -126,7 +126,7 @@
         "address": "Callejón de los libros",
         "lat": 4.603056392344371,
         "lng": -74.0741797612364,
-        "type": "video",
+        "type": "audio",
         "file": null
     },
     {
@@ -136,8 +136,8 @@
         "address": "Callejón de los libros",
         "lat": 4.603241723445095,
         "lng": -74.07409009697434,
-        "type": "video",
-        "file": "media/5. Categoria Vendedores/Doña Rosa vendedora de Loteria.mp4"
+        "type": "audio",
+        "file": null
     },
     {
         "id": 15,
@@ -147,7 +147,7 @@
         "lat": 4.602623990971267,
         "lng": -74.07947590653298,
         "type": "audio",
-        "file": "media/5. Categoria Vendedores/Chicha Venezolana San Victorino.wav"
+        "file": "media/5. Categoria Vendedores/Pregonero_Chichavenezolana.wav"
     },
     {
         "id": 16,
@@ -157,7 +157,7 @@
         "lat": 4.60270447276406,
         "lng": -74.07909984194906,
         "type": "audio",
-        "file": "media/5. Categoria Vendedores/heladero la campiña.m4a"
+        "file": "media/5. Categoria Vendedores/Pregonero_Heladolacampiña.m4a"
     },
     {
         "id": 17,
@@ -166,8 +166,8 @@
         "address": "Plaza San Victorino (borde occidental)",
         "lat": 4.602580092314085,
         "lng": -74.07999533403584,
-        "type": "video",
-        "file": "media/5. Categoria Vendedores/Michelada de mango Cra 7ma.mp4"
+        "type": "audio",
+        "file": "media/5. Categoria Vendedores/Pregonero_Micheladademango.wav"
     },
     {
         "id": 18,

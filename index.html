@@ -1292,17 +1292,26 @@ out body geom;
                 // Only change the media badge when toggling active state.
                 // Do NOT alter the main category marker colors here (user preference).
                 if (badge) {
+                    // If the location has no file, always keep the badge gray
+                    const isMissingFile = badgeIcon && badgeIcon.style.color === '#888';
                     if (isActive) {
                         // badge goes gray when active
                         if (badgeIcon) badgeIcon.style.color = '#6b7280';
                         badge.style.borderColor = '#6b7280';
                         badge.style.background = '#ffffff';
                     } else {
-                        // restore badge to the category color
-                        const orig = marker._origColor || '#666';
-                        if (badgeIcon) badgeIcon.style.color = orig;
-                        badge.style.borderColor = orig;
-                        badge.style.background = '#ffffff';
+                        if (isMissingFile) {
+                            // keep gray if missing file
+                            if (badgeIcon) badgeIcon.style.color = '#888';
+                            badge.style.borderColor = '#888';
+                            badge.style.background = '#ffffff';
+                        } else {
+                            // restore badge to the category color
+                            const orig = marker._origColor || '#666';
+                            if (badgeIcon) badgeIcon.style.color = orig;
+                            badge.style.borderColor = orig;
+                            badge.style.background = '#ffffff';
+                        }
                     }
                 }
             }
@@ -1535,8 +1544,13 @@ out body geom;
                             badgeColor = '#888';
                         }
                         const iconHTML = `<i class="fas ${catInfo.icon}" style="color: ${iconColor};"></i>`;
-                        const mediaIcon = location.type === 'video' ? 'fa-video' : (location.type === 'audio' ? 'fa-volume-up' : '');
-                        const badgeHTML = mediaIcon ? `<div class="media-badge" style="border-color: ${badgeColor};"><i class="fas ${mediaIcon}" style="color: ${badgeColor};"></i></div>` : '';
+                        let badgeHTML = '';
+                        if (location.file) {
+                            const mediaIcon = location.type === 'video' ? 'fa-video' : (location.type === 'audio' ? 'fa-volume-up' : '');
+                            if (mediaIcon) {
+                                badgeHTML = `<div class="media-badge" style="border-color: ${badgeColor};"><i class="fas ${mediaIcon}" style="color: ${badgeColor};"></i></div>`;
+                            }
+                        }
 
                     const customIcon = L.divIcon({
                         className: 'custom-marker',
