@@ -27,7 +27,7 @@
         "lat": 4.605333112624464,
         "lng": -74.07162578973018,
         "type": "audio",
-        "file": "media/2. Categoria Cantantes o instumentos/Cantante_Cositasmalas.wav"
+        "file": "media/2. Categoria Cantantes o instumentos/Cantante_Cositasmalas.mp3"
     },
     {
         "id": 4,
@@ -47,7 +47,7 @@
         "lat": 4.600964996543468,
         "lng": -74.07383268705205,
         "type": "audio",
-        "file": "media/2. Categoria Cantantes o instumentos/Cantante_Estoypensando_01.wav"
+        "file": "media/2. Categoria Cantantes o instumentos/Cantante_Estoypensando_01.mp3"
     },
     {
         "id": 6,
@@ -57,7 +57,7 @@
         "lat": 4.600976957759329,
         "lng": -74.07303001449466,
         "type": "audio",
-        "file": "media/2. Categoria Cantantes o instumentos/Gaitero_Mistico.wav"
+        "file": "media/2. Categoria Cantantes o instumentos/Gaitero_Mistico.mp3"
     },
     {
         "id": 7,
@@ -67,7 +67,7 @@
         "lat": 4.601478221303708,
         "lng": -74.073412456351,
         "type": "audio",
-        "file": "media/2. Categoria Cantantes o instumentos/Percusionistas_urbanos.wav"
+        "file": "media/2. Categoria Cantantes o instumentos/Percusionistas_urbanos.mp3"
     },
     {
         "id": 8,
@@ -87,7 +87,7 @@
         "lat": 4.603530532730275,
         "lng": -74.0722757573915,
         "type": "audio",
-        "file": "media/3. Categoria Eventos/Evento_Cumple35Libro.wav"
+        "file": "media/3. Categoria Eventos/Evento_Cumple35Libro.mp3"
     },
     {
         "id": 10,
@@ -107,7 +107,7 @@
         "lat": 4.601951621505435,
         "lng": -74.07300733515225,
         "type": "audio",
-        "file": "media/3. Categoria Eventos/Performance_Hombresaluminio_BOG25.wav"
+        "file": "media/3. Categoria Eventos/Performance_Hombresaluminio_BOG25.mp3"
     },
     {
         "id": 12,
