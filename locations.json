@@ -147,7 +147,7 @@
         "lat": 4.602623990971267,
         "lng": -74.07947590653298,
         "type": "audio",
-        "file": "media/5. Categoria Vendedores/Pregonero_Chichavenezolana.wav"
+        "file": "media/5. Categoria Vendedores/Pregonero_Chichavenezolana.mp3"
     },
     {
         "id": 16,
@@ -157,7 +157,7 @@
         "lat": 4.60270447276406,
         "lng": -74.07909984194906,
         "type": "audio",
-        "file": "media/5. Categoria Vendedores/Pregonero_Heladolacampiña.m4a"
+        "file": "media/5. Categoria Vendedores/Pregonero_Heladolacampiña.mp3"
     },
     {
         "id": 17,
@@ -167,7 +167,7 @@
         "lat": 4.602580092314085,
         "lng": -74.07999533403584,
         "type": "audio",
-        "file": "media/5. Categoria Vendedores/Pregonero_Micheladademango.wav"
+        "file": "media/5. Categoria Vendedores/Pregonero_Micheladademango.mp3"
     },
     {
         "id": 18,
@@ -177,7 +177,7 @@
         "lat": 4.601292697692628,
         "lng": -74.06952397774778,
         "type": "audio",
-        "file": "media/6. Categoria Sonidos Naturales_/Pájaros.wav"
+        "file": "media/6. Categoria Sonidos Naturales_/Pájaros.mp3"
     },
     {
         "id": 19,
@@ -207,6 +207,6 @@
         "lat": 4.601886298407109,
         "lng": -74.07238809275547,
         "type": "audio",
-        "file": "media/6. Categoria Sonidos Naturales_/Fuente_Parquesantander_01.wav"
+        "file": "media/6. Categoria Sonidos Naturales_/Fuente_Parquesantander_01.mp3"
     }
 ]
