@@ -37,7 +37,7 @@
         "lat": 4.600702083753035,
         "lng": -74.07300234707759,
         "type": "audio",
-        "file": null
+        "file": "media/2. Categoria Cantantes o instumentos/Cantante Pero lo dudo.mp3"
     },
     {
         "id": 5,
@@ -67,17 +67,17 @@
         "lat": 4.601478221303708,
         "lng": -74.073412456351,
         "type": "audio",
-        "file": "media/2. Categoria Cantantes o instumentos/Percusionistas_urbanos.mp3"
+        "file": "media/2. Categoria Cantantes o instumentos/Baterista_Matador.mp3"
     },
     {
         "id": 8,
-        "title": "Baterista Plástico",
+        "title": "Baterista Tecno Plástico",
         "category": "Cantantes o instrumentos",
         "address": "Eje Ambiental frente a C & P",
         "lat": 4.600579582097168,
         "lng": -74.07111425782121,
         "type": "audio",
-        "file": null
+        "file": "media/2. Categoria Cantantes o instumentos/Baterista_Tecno_Plastico.mp3"
     },
     {
         "id": 9,
@@ -97,7 +97,7 @@
         "lat": 4.602842249353074,
         "lng": -74.0743134805837,
         "type": "audio",
-        "file": null
+        "file": "media/3. Categoria Eventos/Cantante RAncherta Cielito Lindo.mp3"
     },
     {
         "id": 11,
@@ -127,17 +127,17 @@
         "lat": 4.603056392344371,
         "lng": -74.0741797612364,
         "type": "audio",
-        "file": null
+        "file": "media/4. Categoria Bailadores/Bailadores de Ranchera.mp3"
     },
     {
         "id": 14,
-        "title": "Doña Rosa Lotera",
+        "title": "Vaca Venta Avena",
         "category": "Vendedores",
-        "address": "Callejón de los libros",
-        "lat": 4.603241723445095,
-        "lng": -74.07409009697434,
+        "address": "Av. Jimenez con 4ta",
+        "lat": 4.600764206092222,
+        "lng": -74.07012829741068,
         "type": "audio",
-        "file": null
+        "file": "media/5. Categoria Vendedores/Pregonero_Vaca.mp3"
     },
     {
         "id": 15,
@@ -197,7 +197,7 @@
         "lat": 4.602133048905742,
         "lng": -74.07241885271836,
         "type": "audio",
-        "file": null
+        "file": "media/6. Categoria Sonidos Naturales_/sonido arboles con viento Parque Santander.mp3"
     },
     {
         "id": 21,
@@ -208,5 +208,25 @@
         "lng": -74.07238809275547,
         "type": "audio",
         "file": "media/6. Categoria Sonidos Naturales_/Fuente_Parquesantander_01.mp3"
+    },
+    {
+        "id": 22,
+        "title": "Violín Toda la Vida ",
+        "category": "Cantantes o instrumentos",
+        "address": "Cra. 7 con 17",
+        "lat": 4.603615482439807,
+        "lng": -74.0724604386648,
+        "type": "audio",
+        "file": "media/2. Categoria Cantantes o instumentos/Musico_Todalavida.mp3"
+    },
+    {
+        "id": 23,
+        "title": "Palacio de San Francisco ",
+        "category": "Lugares",
+        "address": "Av. Jimenez con 7ma",
+        "lat": 4.602141978014714,
+        "lng": -74.07361525333596,
+        "type": "audio",
+        "file": "media/7. Lugares/BOG25_Palacio_Interior.mp3"
     }
 ]

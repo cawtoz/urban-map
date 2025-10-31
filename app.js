@@ -726,7 +726,8 @@ fetch('locations.json')
             'Eventos': { icon: 'fa-calendar-check', color: '#F59E0B' }, // amber
             'Bailadores': { icon: 'fa-theater-masks', color: '#EF4444' }, // performers/dancers
             'Vendedores': { icon: 'fa-store', color: '#7C3AED' }, // violet (differentiador)
-            'Sonidos Naturales': { icon: 'fa-tree', color: '#10B981' } // green
+            'Sonidos Naturales': { icon: 'fa-tree', color: '#10B981' }, // green
+            'Lugares': { icon: 'fa-landmark', color: '#2563EB' } // azul para lugares
         };
 
         // Estado de categorías habilitadas (por defecto todas activas)
