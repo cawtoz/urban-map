@@ -228,5 +228,65 @@
         "lng": -74.07361525333596,
         "type": "audio",
         "file": "media/7. Lugares/BOG25_Palacio_Interior.mp3"
+    },
+    {
+        "id": 24,
+        "title": "Por una navaja",
+        "category": "Cantantes o instrumentos",
+        "address": "",
+        "lat": null,
+        "lng": null,
+        "type": "audio",
+        "file": "media/2. Categoria Cantantes o instumentos/Cantante_por_una_navaja.mp3"
+    },
+    {
+        "id": 25,
+        "title": "Concierto ASAB",
+        "category": "Eventos",
+        "address": "",
+        "lat": null,
+        "lng": null,
+        "type": "audio",
+        "file": "media/3. Categoria Eventos/Evento_concierto_ASAB.mp3"
+    },
+    {
+        "id": 26,
+        "title": "La Kzona Sonidos",
+        "category": "Eventos",
+        "address": "",
+        "lat": null,
+        "lng": null,
+        "type": "audio",
+        "file": "media/3. Categoria Eventos/Evento_La_Kzona_Sonidos.mp3"
+    },
+    {
+        "id": 27,
+        "title": "La Kzona",
+        "category": "Eventos",
+        "address": "",
+        "lat": null,
+        "lng": null,
+        "type": "audio",
+        "file": "media/3. Categoria Eventos/Evento_La_Kzona.mp3"
+    },
+    {
+        "id": 28,
+        "title": "A comer gallina criolla",
+        "category": "Vendedores",
+        "address": "",
+        "lat": null,
+        "lng": null,
+        "type": "audio",
+        "file": "media/5. Categoria Vendedores/Pregonero_A_comer_gallina_criolla.mp3"
+    },
+    {
+        "id": 29,
+        "title": "Cra 11 con 15",
+        "category": "Lugares",
+        "address": "Cra 11 con 15",
+        "lat": null,
+        "lng": null,
+        "type": "audio",
+        "file": "media/7. Lugares/Lugar_cra_11_con_15.mp3"
     }
 ]

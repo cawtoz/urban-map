@@ -308,25 +308,26 @@ const openMixerBtn = document.getElementById('open-mixer-btn');
 
 // Mostrar el mezclador al hacer click en el botón flotante
 if (openMixerBtn) {
+    openMixerBtn.style.display = 'flex';
     openMixerBtn.addEventListener('click', function() {
         audioContainer.classList.add('active');
-        audioContainer.classList.remove('minimized');
         openMixerBtn.style.display = 'none';
     });
 }
 
 
 
-// Minimizar/restaurar el mezclador
-audioContainer.addEventListener('click', function(e) {
-    if (e.target.classList.contains('mixer-minimize') || (e.target.closest && e.target.closest('.mixer-minimize'))) {
-        if (audioContainer.classList.contains('minimized')) {
-            audioContainer.classList.remove('minimized');
-        } else {
-            audioContainer.classList.add('minimized');
-        }
-    }
-});
+
+// Minimizar/restaurar el mezclador SOLO con el botón
+const mixerMinimizeBtn = audioContainer.querySelector('.mixer-minimize');
+if (mixerMinimizeBtn) {
+    mixerMinimizeBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        audioContainer.classList.remove('active');
+        // Opcional: mostrar el botón flotante para abrir el mezclador
+        if (openMixerBtn) openMixerBtn.style.display = 'flex';
+    });
+}
 
 // Restaurar el mezclador al hacer clic en la cabecera cuando está minimizado
 const mixerHeader = audioContainer.querySelector('.mixer-header');
@@ -628,17 +629,16 @@ function createAudioTrack(location) {
     // Agregar al mezclador
     mixerTracks.appendChild(trackDiv);
     audioContainer.classList.add('active');
-    
+    // Ocultar el botón flotante al abrir el mezclador
+    if (openMixerBtn) openMixerBtn.style.display = 'none';
     // Guardar referencia (incluyendo el marcador)
     activeAudios.set(location.id, { 
         element: trackDiv, 
         audio: audio,
         marker: location.marker 
     });
-    
     // Actualizar color del marcador a activo
     updateMarkerStyle(location.marker, true);
-    
     // Reproducir automáticamente
     audio.play().catch(err => console.log('Error al reproducir:', err));
 }
